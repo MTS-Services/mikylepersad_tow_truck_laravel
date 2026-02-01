@@ -42,3 +42,5 @@ Route::prefix('driver')->name('driver.')->group(function () {
         Route::post('/logout', [DriverAuthController::class, 'logout'])->name('logout');
     });
 });
+
+include __DIR__.'/settings.php';

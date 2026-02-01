@@ -8,7 +8,7 @@ import { UserInfo } from '@/components/user-info';
 import { UserMenuContent } from '@/components/user-menu-content';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { logout } from '@/routes';
-import { dashboard } from '@/routes';
+import { dashboard } from '@/routes/driver';
 import { type SharedData } from '@/types';
 
 
