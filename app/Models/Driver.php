@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class Driver extends Authenticatable
 {
@@ -13,6 +14,7 @@ class Driver extends Authenticatable
 
     protected $fillable = [
         'name',
+        'avatar',
         'email',
         'password',
         'phone_number',
@@ -28,6 +30,8 @@ class Driver extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = ['avatar_url'];
+
     protected function casts(): array
     {
         return [
@@ -37,6 +41,11 @@ class Driver extends Authenticatable
             'is_approved' => 'boolean',
             'approved_at' => 'datetime',
         ];
+    }
+
+    public function getAvatarUrlAttribute(): string
+    {
+        return Storage::disk('public')->url($this->avatar);
     }
 
     public function serviceArea(): BelongsTo

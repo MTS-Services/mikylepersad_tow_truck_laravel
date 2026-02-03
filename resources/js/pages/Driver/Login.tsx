@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { Lock, Mail, Truck } from 'lucide-react';
 
@@ -17,7 +17,7 @@ export default function DriverLogin() {
     return (
         <>
             <Head title="Driver Login" />
-            
+
             <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-blue-50 to-slate-50 flex items-center justify-center p-4">
                 <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom duration-700">
                     <div className="text-center mb-8">
@@ -102,19 +102,19 @@ export default function DriverLogin() {
                         <div className="mt-6 text-center space-y-3">
                             <div className="text-sm text-slate-600">
                                 Don't have an account?{' '}
-                                <a
+                                <Link
                                     href={route('driver.register')}
                                     className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
                                 >
                                     Register here
-                                </a>
+                                </Link>
                             </div>
-                            <a
+                            <Link
                                 href="/"
                                 className="block text-sm text-slate-500 hover:text-slate-700 transition-colors duration-200"
                             >
                                 ← Back to Directory
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

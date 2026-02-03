@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { Users, CheckCircle, Clock, Wifi, LogOut, UserCog } from 'lucide-react';
 
 interface Stats {
@@ -32,7 +32,7 @@ export default function AdminDashboard({ stats, recentDrivers }: Props) {
     return (
         <>
             <Head title="Admin Dashboard" />
-            
+
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
                 <nav className="bg-white border-b border-slate-200 shadow-sm">
                     <div className="container mx-auto px-4 py-4">
@@ -104,15 +104,15 @@ export default function AdminDashboard({ stats, recentDrivers }: Props) {
                         <div className="p-6 border-b border-slate-200">
                             <div className="flex items-center justify-between">
                                 <h2 className="text-2xl font-bold text-slate-900">Recent Drivers</h2>
-                                <a
+                                <Link
                                     href={route('admin.drivers.index')}
                                     className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
                                 >
                                     View All Drivers
-                                </a>
+                                </Link>
                             </div>
                         </div>
-                        
+
                         <div className="overflow-x-auto">
                             <table className="w-full">
                                 <thead className="bg-slate-50 border-b border-slate-200">
@@ -140,16 +140,16 @@ export default function AdminDashboard({ stats, recentDrivers }: Props) {
                                             <td className="px-6 py-4">
                                                 <div className="flex flex-col gap-1">
                                                     <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold w-fit ${
-                                                        driver.is_approved 
-                                                            ? 'bg-green-100 text-green-700' 
+                                                        driver.is_approved
+                                                            ? 'bg-green-100 text-green-700'
                                                             : 'bg-amber-100 text-amber-700'
                                                     }`}>
                                                         {driver.is_approved ? 'Approved' : 'Pending'}
                                                     </span>
                                                     {driver.is_approved && (
                                                         <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold w-fit ${
-                                                            driver.is_online 
-                                                                ? 'bg-emerald-100 text-emerald-700' 
+                                                            driver.is_online
+                                                                ? 'bg-emerald-100 text-emerald-700'
                                                                 : 'bg-slate-100 text-slate-600'
                                                         }`}>
                                                             {driver.is_online ? 'Online' : 'Offline'}
