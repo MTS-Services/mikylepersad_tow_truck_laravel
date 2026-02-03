@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+import { Head, router, usePage } from '@inertiajs/react';
 import { useState, useCallback } from 'react';
 import {
     MessageCircle,
@@ -23,8 +23,10 @@ import {
     Menu,
     X,
     UserPlus,
-    LogIn
+    LogIn,
+    UserCog
 } from 'lucide-react';
+import { SharedData } from '@/types';
 
 interface Driver {
     id: number;
@@ -69,6 +71,8 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
     const [searchTerm, setSearchTerm] = useState(filters.search || '');
     const [selectedArea, setSelectedArea] = useState(filters.area || 'all');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const { auth } = usePage<SharedData>().props;
 
     const formatPhoneForWhatsApp = (phone: string) => {
         return phone.replace(/\D/g, '');
@@ -136,7 +140,19 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
 
                             {/* Auth Buttons */}
                             <div className="hidden md:flex items-center gap-3">
+                               { auth.driver ? (
+                                <>
                                 <a
+                                    href="/driver/dashboard"
+                                    className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:text-orange-600 font-medium transition-colors duration-200"
+                                >
+                                    <UserCog className="w-4 h-4" />
+                                    Dashboard
+                                </a>
+                                </>
+                               ):(
+                                <>
+                                 <a
                                     href="/driver/login"
                                     className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:text-orange-600 font-medium transition-colors duration-200"
                                 >
@@ -150,6 +166,8 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                     <UserPlus className="w-4 h-4" />
                                     Join as Driver
                                 </a>
+                                </>
+                               )}
                             </div>
 
                             {/* Mobile Menu Button */}

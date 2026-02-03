@@ -40,27 +40,11 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user' => $request->user() ? array_merge(
-                    $request->user()->only([
-                        'id',
-                        'email',
-                        'first_name',
-                        'last_name',
-                        'phone_number',
-                        'employee_code',
-                        'avatar',
-                    ]),
-                    [
-                        'name' => $request->user()->name,
-                        'role' => $request->user()->role?->value,
-                        'role_label' => $request->user()->role_label,
-                        'is_admin' => $request->user()->isAdmin(),
-                        'can_manage_users' => $request->user()->canManageUsers(),
-                        'avatar_url' => $request->user()->avatar_url,
-                    ]
-                ) : null,
+                'user' => $request->user(),
+                'admin' => $request->user(guard: 'admin')?->only('id', 'name', 'email'),
+                'driver' => $request->user(guard: 'driver')?->only('id', 'name', 'email'),
             ],
-            'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'sidebarOpen' => !$request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
             'features' => [
                 // 'canRegister' => Features::enabled(Features::registration()),
                 // 'canResetPassword' => Features::enabled(Features::resetPasswords()),
