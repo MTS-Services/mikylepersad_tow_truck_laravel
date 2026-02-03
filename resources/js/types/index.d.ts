@@ -3,6 +3,8 @@ import { LucideIcon } from 'lucide-react';
 
 export interface Auth {
     user: User;
+    admin: Admin;
+    driver: Driver;
     permissions?: string[];
 }
 
@@ -64,14 +66,38 @@ export interface User {
     all_permissions?: string[];
     created_at: string;
     updated_at: string;
-    // When I Work fields
-    first_name?: string;
-    last_name?: string;
-    phone_number?: string;
-    employee_code?: string;
-    role?: number;
-    role_label?: string;
-    can_manage_users?: boolean;
+    avatar_url?: string;
+    [key: string]: unknown;
+}
+
+export interface Admin {
+    id: number;
+    name: string;
+    email: string;
+    avatar?: string;
+    is_admin?: boolean;
+    email_verified_at: string | null;
+    two_factor_enabled?: boolean;
+    permissions?: string[];
+    all_permissions?: string[];
+    created_at: string;
+    updated_at: string;
+    avatar_url?: string;
+    [key: string]: unknown;
+}
+
+export interface Driver {
+    id: number;
+    name: string;
+    email: string;
+    avatar?: string;
+    is_admin?: boolean;
+    email_verified_at: string | null;
+    two_factor_enabled?: boolean;
+    permissions?: string[];
+    all_permissions?: string[];
+    created_at: string;
+    updated_at: string;
     avatar_url?: string;
     [key: string]: unknown;
 }
