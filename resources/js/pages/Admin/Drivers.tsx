@@ -1,6 +1,6 @@
 import { Head, Link, router, useForm } from '@inertiajs/react';
 import { useState } from 'react';
-import { UserCog, LogOut, CheckCircle, Trash2, Clock, Circle, ArrowLeft, Search, ChevronLeft, ChevronRight, Filter, Plus, X, Edit2 } from 'lucide-react';
+import { UserCog, LogOut, CheckCircle, Trash2, Clock, Circle, ArrowLeft, Search, ChevronLeft, ChevronRight, Filter, Plus, X, Edit2, Mail, Phone } from 'lucide-react';
 
 interface Driver {
     id: number;
@@ -14,6 +14,7 @@ interface Driver {
     approved_by: string | null;
     approved_at: string | null;
     created_at: string;
+    avatar_url?: string;
 }
 
 interface PaginationLink {
@@ -277,6 +278,7 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
                                     <table className="w-full">
                                         <thead className="bg-slate-50 border-b border-slate-200">
                                             <tr>
+                                                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Image</th>
                                                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Driver</th>
                                                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Contact</th>
                                                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Service Area</th>
@@ -288,12 +290,40 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
                                             {pendingDrivers.map((driver) => (
                                                 <tr key={driver.id} className="hover:bg-slate-50 transition-colors duration-150">
                                                     <td className="px-6 py-4">
-                                                        <div className="font-semibold text-slate-900">{driver.name}</div>
+                                                        <div className="font-semibold text-slate-900">
+                                                            <img src={driver.avatar_url} alt={driver.name} className="w-12 h-12 rounded-full object-cover" />
+                                                        </div>
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <div className="text-sm text-slate-600">{driver.email}</div>
-                                                        <div className="text-sm text-slate-500">{driver.phone_number}</div>
+                                                        <div className="font-semibold text-slate-900">{driver.name}</div>
                                                     </td>
+                                                      <td className="px-6 py-4">
+                                                <div className="flex items-center gap-3">
+                                                    <a
+                                                        href={`mailto:${driver.email}`}
+                                                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-teal-200 text-teal-600 shadow-sm hover:bg-teal-50 transition-colors duration-200"
+                                                    >
+                                                        <Mail className="w-5 h-5" />
+                                                        <span className="text-xs font-semibold">Email</span>
+                                                    </a>
+                                                    <a
+                                                        href={`tel:${driver.phone_number}`}
+                                                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-teal-200 text-teal-600 shadow-sm hover:bg-teal-50 transition-colors duration-200"
+                                                    >
+                                                        <Phone className="w-5 h-5" />
+                                                        <span className="text-xs font-semibold">Call</span>
+                                                    </a>
+                                                    <a
+                                                        href={`https://wa.me/${driver.phone_number.replace(/\D/g, '')}`}
+                                                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-teal-200 text-teal-600 shadow-sm hover:bg-teal-50 transition-colors duration-200"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <Phone className="w-5 h-5 rotate-45" />
+                                                        <span className="text-xs font-semibold">WhatsApp</span>
+                                                    </a>
+                                                </div>
+                                            </td>
                                                     <td className="px-6 py-4">
                                                         <span className="text-sm text-slate-700">{driver.service_area}</span>
                                                     </td>
@@ -335,6 +365,7 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
                             <table className="w-full">
                                 <thead className="bg-slate-50 border-b border-slate-200">
                                     <tr>
+                                        <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Image</th>
                                         <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Driver</th>
                                         <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Contact</th>
                                         <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Service Area</th>
@@ -354,12 +385,40 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
                                         approvedDrivers.map((driver) => (
                                             <tr key={driver.id} className="hover:bg-slate-50 transition-colors duration-150">
                                                 <td className="px-6 py-4">
-                                                    <div className="font-semibold text-slate-900">{driver.name}</div>
+                                                    <div className="font-semibold text-slate-900">
+                                                        <img src={driver.avatar_url} alt={driver.name} className="w-12 h-12 rounded-full object-cover" />
+                                                    </div>
                                                 </td>
                                                 <td className="px-6 py-4">
-                                                    <div className="text-sm text-slate-600">{driver.email}</div>
-                                                    <div className="text-sm text-slate-500">{driver.phone_number}</div>
+                                                    <div className="font-semibold text-slate-900">{driver.name}</div>
                                                 </td>
+                                                  <td className="px-6 py-4">
+                                                <div className="flex items-center gap-3">
+                                                    <a
+                                                        href={`mailto:${driver.email}`}
+                                                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-teal-200 text-teal-600 shadow-sm hover:bg-teal-50 transition-colors duration-200"
+                                                    >
+                                                        <Mail className="w-5 h-5" />
+                                                        <span className="text-xs font-semibold">Email</span>
+                                                    </a>
+                                                    <a
+                                                        href={`tel:${driver.phone_number}`}
+                                                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-teal-200 text-teal-600 shadow-sm hover:bg-teal-50 transition-colors duration-200"
+                                                    >
+                                                        <Phone className="w-5 h-5" />
+                                                        <span className="text-xs font-semibold">Call</span>
+                                                    </a>
+                                                    <a
+                                                        href={`https://wa.me/${driver.phone_number.replace(/\D/g, '')}`}
+                                                        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-teal-200 text-teal-600 shadow-sm hover:bg-teal-50 transition-colors duration-200"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <Phone className="w-5 h-5 rotate-45" />
+                                                        <span className="text-xs font-semibold">WhatsApp</span>
+                                                    </a>
+                                                </div>
+                                            </td>
                                                 <td className="px-6 py-4">
                                                     <span className="text-sm text-slate-700">{driver.service_area}</span>
                                                 </td>

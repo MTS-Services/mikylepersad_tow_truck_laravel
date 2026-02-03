@@ -111,8 +111,8 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                     <div className="container mx-auto px-4 py-4">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-600 rounded-xl flex items-center justify-center">
-                                    <Truck className="w-6 h-6 text-white" />
+                                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                                    <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
                                 </div>
                                 <div>
                                     <h1 className="text-xl font-bold text-slate-900">Driver Dashboard</h1>

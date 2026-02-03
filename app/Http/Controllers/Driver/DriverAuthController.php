@@ -26,13 +26,13 @@ class DriverAuthController extends Controller
 
         if (Auth::guard('driver')->attempt($credentials, $request->boolean('remember'))) {
             $driver = Auth::guard('driver')->user();
-            
-            if (!$driver->is_approved) {
-                Auth::guard('driver')->logout();
-                return back()->withErrors([
-                    'email' => 'Your account is pending approval.',
-                ])->onlyInput('email');
-            }
+
+            // if (!$driver->is_approved) {
+            //     Auth::guard('driver')->logout();
+            //     return back()->withErrors([
+            //         'email' => 'Your account is pending approval.',
+            //     ])->onlyInput('email');
+            // }
 
             $request->session()->regenerate();
             return redirect()->intended(route('driver.dashboard'));

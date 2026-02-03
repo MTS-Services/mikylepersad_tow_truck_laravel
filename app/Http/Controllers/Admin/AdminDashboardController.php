@@ -25,6 +25,7 @@ class AdminDashboardController extends Controller
                 return [
                     'id' => $driver->id,
                     'name' => $driver->name,
+                    'avatar_url' => $driver->avatar_url,
                     'email' => $driver->email,
                     'phone_number' => $driver->phone_number,
                     'service_area' => $driver->serviceArea?->name,

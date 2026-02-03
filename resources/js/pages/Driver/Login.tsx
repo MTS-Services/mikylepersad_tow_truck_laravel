@@ -21,7 +21,7 @@ export default function DriverLogin() {
             <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-blue-50 to-slate-50 flex items-center justify-center p-4">
                 <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom duration-700">
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-600 to-emerald-600 rounded-2xl mb-4 shadow-2xl animate-in zoom-in duration-500">
+                        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-500 rounded-2xl mb-4 shadow-2xl animate-in zoom-in duration-500">
                             <Truck className="w-10 h-10 text-white" />
                         </div>
                         <h1 className="text-4xl font-bold text-slate-900 mb-2">Driver Portal</h1>

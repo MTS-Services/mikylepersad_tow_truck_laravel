@@ -302,7 +302,7 @@ export default function FileUpload({
                                                     <img
                                                         src={file.url}
                                                         alt={file.name || 'File'}
-                                                        className="w-full h-full object-cover"
+                                                        className="w-full h-full object-contain"
                                                     />
                                                 ) : isVideo ? (
                                                     <video
@@ -318,7 +318,7 @@ export default function FileUpload({
                                             {/* File Info */}
                                             <div className="p-2">
                                                 <p className="text-xs font-medium truncate dark:text-gray-200">
-                                                    {file.name || file.path.split('/').pop()}
+                                                    {file.name ?? file.path?.split('/').pop() ?? 'File'}
                                                 </p>
                                                 {file.size && (
                                                     <p className="text-xs text-muted-foreground dark:text-gray-400">
@@ -374,7 +374,7 @@ export default function FileUpload({
                                                     <img
                                                         src={preview.preview}
                                                         alt={preview.file.name}
-                                                        className="w-full h-full object-cover"
+                                                        className="w-full h-full object-contain"
                                                     />
                                                 ) : preview.type === 'video' ? (
                                                     <video
