@@ -38,7 +38,7 @@ Route::prefix('driver')->name('driver.')->group(function () {
     Route::middleware('driver')->group(function () {
         Route::get('/dashboard', [DriverDashboardController::class, 'index'])->name('dashboard');
         Route::post('/toggle-online', [DriverDashboardController::class, 'toggleOnline'])->name('toggle-online');
-        Route::post('/update-profile', [DriverDashboardController::class, 'updateProfile'])->name('update-profile');
+        Route::patch('/update-profile', [DriverDashboardController::class, 'updateProfile'])->name('update-profile');
         Route::post('/logout', [DriverAuthController::class, 'logout'])->name('logout');
     });
 });

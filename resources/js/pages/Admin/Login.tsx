@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { Lock, Mail, Shield } from 'lucide-react';
 
@@ -17,7 +17,7 @@ export default function AdminLogin() {
     return (
         <>
             <Head title="Admin Login" />
-            
+
             <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4">
                 <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom duration-700">
                     <div className="text-center mb-8">
@@ -100,12 +100,12 @@ export default function AdminLogin() {
                         </form>
 
                         <div className="mt-6 text-center">
-                            <a
+                            <Link
                                 href="/"
                                 className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
                             >
                                 ← Back to Directory
-                            </a>
+                            </Link>
                         </div>
                     </div>
 

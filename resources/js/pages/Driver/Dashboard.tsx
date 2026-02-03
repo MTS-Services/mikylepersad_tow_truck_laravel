@@ -1,6 +1,11 @@
-import { Head, router, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
 import { Truck, LogOut, Circle, MapPin, Phone, Mail, Save } from 'lucide-react';
-import { FormEventHandler, useState } from 'react';
+import FileUpload from '@/components/file-upload';
+import InputError from '@/components/input-error';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+
+
 
 interface Driver {
     id: number;
@@ -10,6 +15,8 @@ interface Driver {
     service_area_id: number;
     service_area: string;
     is_online: boolean;
+    avatar?: string;
+    avatar_url?: string;
 }
 
 interface ServiceArea {
@@ -23,12 +30,64 @@ interface Props {
 }
 
 export default function DriverDashboard({ driver, serviceAreas }: Props) {
+    const [existingFiles, setExistingFiles] = useState<any[]>([]);
     const [isOnline, setIsOnline] = useState(driver.is_online);
-    
-    const { data, setData, post, processing, errors } = useForm({
-        phone_number: driver.phone_number,
-        service_area_id: driver.service_area_id.toString(),
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        phone_number: '',
+        service_area_id: '',
+        avatar: null as File | null,
+        _method: 'PATCH',
     });
+
+      useEffect(() => {
+        if (driver) {
+            setData({
+                phone_number: driver.phone_number || '',
+                service_area_id: driver.service_area_id || '',
+                avatar: null,
+                _method: 'PATCH',
+            });
+
+            // Update existing files whenever information changes
+            if (driver.avatar_url) {
+                setExistingFiles([{
+                    id: driver.id,
+                    url: `${driver.avatar_url}`,
+                    name: driver.avatar?.replace(/^.*[\\\/]/, ''),
+                    mime_type: 'image/*',
+                    path: driver.avatar,
+                }]);
+            } else {
+                setExistingFiles([]);
+            }
+        }
+    }, [driver]);
+
+    const submit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // @ts-ignore - Inertia will handle FormData correctly
+        post(route('driver.update-profile'), {
+            forceFormData: true,
+            onSuccess: () => {
+
+                setData('avatar', null);
+                reset('avatar');
+                setExistingFiles([]);
+                toast.success('Profile updated successfully.');
+            },
+            onError: () => {
+                toast.error('Failed to update profile.');
+            }
+        });
+    };
+
+     const handleRemoveExisting = () => {
+        if (confirm('Are you sure you want to remove this file? You must upload a new file to save the changes.')) {
+            setExistingFiles([]);
+        }
+    };
 
     const handleLogout = () => {
         router.post(route('driver.logout'));
@@ -43,17 +102,10 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
         });
     };
 
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-        post(route('driver.update-profile'), {
-            preserveScroll: true,
-        });
-    };
-
     return (
         <>
             <Head title="Driver Dashboard" />
-            
+
             <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-blue-50 to-slate-50">
                 <nav className="bg-white border-b border-slate-200 shadow-sm">
                     <div className="container mx-auto px-4 py-4">
@@ -68,12 +120,12 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <a
+                                <Link
                                     href="/"
                                     className="px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200 font-medium"
                                 >
                                     View Directory
-                                </a>
+                                </Link>
                                 <button
                                     onClick={handleLogout}
                                     className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
@@ -97,8 +149,8 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                                 <button
                                     onClick={handleToggleOnline}
                                     className={`relative inline-flex h-14 w-28 items-center rounded-full transition-all duration-300 shadow-lg ${
-                                        isOnline 
-                                            ? 'bg-gradient-to-r from-green-500 to-emerald-600' 
+                                        isOnline
+                                            ? 'bg-gradient-to-r from-green-500 to-emerald-600'
                                             : 'bg-slate-300'
                                     }`}
                                 >
@@ -111,10 +163,10 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                                     </span>
                                 </button>
                             </div>
-                            
+
                             <div className={`flex items-center gap-3 p-4 rounded-xl ${
-                                isOnline 
-                                    ? 'bg-green-50 border-2 border-green-200' 
+                                isOnline
+                                    ? 'bg-green-50 border-2 border-green-200'
                                     : 'bg-slate-50 border-2 border-slate-200'
                             }`}>
                                 <Circle className={`w-4 h-4 ${isOnline ? 'fill-green-500 text-green-500' : 'fill-slate-400 text-slate-400'}`} />
@@ -123,8 +175,8 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                                         {isOnline ? 'You are currently ONLINE' : 'You are currently OFFLINE'}
                                     </p>
                                     <p className={`text-sm ${isOnline ? 'text-green-700' : 'text-slate-600'}`}>
-                                        {isOnline 
-                                            ? 'Customers can see you in the directory and contact you' 
+                                        {isOnline
+                                            ? 'Customers can see you in the directory and contact you'
                                             : 'You are not visible to customers in the directory'}
                                     </p>
                                 </div>
@@ -137,6 +189,7 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                             <h2 className="text-2xl font-bold text-slate-900 mb-2">Profile Information</h2>
                             <p className="text-slate-600">Update your contact details and service area</p>
                         </div>
+
 
                         <div className="mb-8 p-6 bg-slate-50 rounded-xl border border-slate-200">
                             <div className="flex items-center gap-3 mb-4">
@@ -151,7 +204,21 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                             <p className="text-sm text-slate-500">Email cannot be changed. Contact admin if you need to update it.</p>
                         </div>
 
+
+
+
                         <form onSubmit={submit} className="space-y-6">
+                            <div className='w-1/2 mx-auto'>
+                                <FileUpload
+                                    value={data.avatar}
+                                    onChange={(file) => setData('avatar', file as File | null)}
+                                    existingFiles={existingFiles}
+                                    onRemoveExisting={handleRemoveExisting}
+                                    accept="video/*,image/*"
+                                    maxSize={500}
+                                />
+                                <InputError message={errors.avatar} />
+                            </div>
                             <div>
                                 <label htmlFor="phone_number" className="block text-sm font-semibold text-slate-700 mb-2">
                                     Phone Number

@@ -1,4 +1,4 @@
-import { Head, router, usePage } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import { useState, useCallback } from 'react';
 import {
     MessageCircle,
@@ -121,7 +121,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                     <div className="container mx-auto px-4">
                         <div className="flex items-center justify-between h-16 md:h-20">
                             {/* Logo */}
-                            <a href="/" className="flex items-center gap-3 group">
+                            <Link href="/" className="flex items-center gap-3 group">
                                 <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 via-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                                     <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
                                 </div>
@@ -129,43 +129,43 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                     <h1 className="text-lg md:text-xl font-bold text-slate-900 leading-tight">Oncall<span className="text-orange-500">TT</span></h1>
                                     <p className="text-xs text-slate-500 -mt-0.5">Trinidad & Tobago</p>
                                 </div>
-                            </a>
+                            </Link>
 
                             {/* Desktop Navigation */}
                             <nav className="hidden md:flex items-center gap-8">
-                                <a href="#drivers" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">Find Drivers</a>
-                                <a href="#how-it-works" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">How It Works</a>
-                                <a href="#contact" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">Contact</a>
+                                <Link href="#drivers" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">Find Drivers</Link>
+                                <Link href="#how-it-works" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">How It Works</Link>
+                                <Link href="#contact" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">Contact</Link>
                             </nav>
 
                             {/* Auth Buttons */}
                             <div className="hidden md:flex items-center gap-3">
                                { auth.driver ? (
                                 <>
-                                <a
+                                <Link
                                     href="/driver/dashboard"
                                     className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:text-orange-600 font-medium transition-colors duration-200"
                                 >
                                     <UserCog className="w-4 h-4" />
                                     Dashboard
-                                </a>
+                                </Link>
                                 </>
                                ):(
                                 <>
-                                 <a
+                                 <Link
                                     href="/driver/login"
                                     className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:text-orange-600 font-medium transition-colors duration-200"
                                 >
                                     <LogIn className="w-4 h-4" />
                                     Driver Login
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="/driver/register"
                                     className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                                 >
                                     <UserPlus className="w-4 h-4" />
                                     Join as Driver
-                                </a>
+                                </Link>
                                 </>
                                )}
                             </div>
@@ -183,12 +183,12 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                         {mobileMenuOpen && (
                             <div className="md:hidden py-4 border-t border-slate-100 animate-in fade-in slide-in-from-top duration-300">
                                 <nav className="flex flex-col gap-2">
-                                    <a href="#drivers" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">Find Drivers</a>
-                                    <a href="#how-it-works" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">How It Works</a>
-                                    <a href="#contact" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">Contact</a>
+                                    <Link href="#drivers" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">Find Drivers</Link>
+                                    <Link href="#how-it-works" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">How It Works</Link>
+                                    <Link href="#contact" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">Contact</Link>
                                     <hr className="my-2 border-slate-200" />
-                                    <a href="/driver/login" className="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition-all">Driver Login</a>
-                                    <a href="/driver/register" className="mx-4 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-center font-semibold rounded-xl">Join as Driver</a>
+                                    <Link href="/driver/login" className="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition-all">Driver Login</Link>
+                                    <Link href="/driver/register" className="mx-4 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-center font-semibold rounded-xl">Join as Driver</Link>
                                 </nav>
                             </div>
                         )}
@@ -408,7 +408,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
 
                                             {/* Action Buttons */}
                                             <div className="space-y-3">
-                                                <a
+                                                <Link
                                                     href={`https://wa.me/${formatPhoneForWhatsApp(driver.phone_number)}?text=Hi, I need towing assistance. Are you available?`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
@@ -416,15 +416,15 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                 >
                                                     <MessageCircle className="w-5 h-5 group-hover/btn:animate-bounce" />
                                                     <span>WhatsApp Now</span>
-                                                </a>
+                                                </Link>
 
-                                                <a
+                                                <Link
                                                     href={`tel:${driver.phone_number}`}
                                                     className="flex items-center justify-center gap-3 w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3.5 px-6 rounded-xl transition-all duration-300"
                                                 >
                                                     <Phone className="w-5 h-5" />
                                                     <span>{driver.phone_number}</span>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -497,20 +497,20 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             </p>
 
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                <a
+                                <Link
                                     href="/driver/register"
                                     className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold text-lg rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1"
                                 >
                                     <UserPlus className="w-5 h-5" />
                                     Register Now - It's Free
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="/driver/login"
                                     className="flex items-center gap-3 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all duration-300"
                                 >
                                     <LogIn className="w-5 h-5" />
                                     Driver Login
-                                </a>
+                                </Link>
                             </div>
 
                             {/* Benefits */}
@@ -571,10 +571,10 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             <div>
                                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                                 <ul className="space-y-2">
-                                    <li><a href="#drivers" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">Find Drivers</a></li>
-                                    <li><a href="#how-it-works" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">How It Works</a></li>
-                                    <li><a href="/driver/register" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">Register as Driver</a></li>
-                                    <li><a href="/driver/login" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">Driver Login</a></li>
+                                    <li><Link href="#drivers" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">Find Drivers</Link></li>
+                                    <li><Link href="#how-it-works" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">How It Works</Link></li>
+                                    <li><Link href="/driver/register" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">Register as Driver</Link></li>
+                                    <li><Link href="/driver/login" className="text-slate-400 hover:text-orange-400 transition-colors text-sm">Driver Login</Link></li>
                                 </ul>
                             </div>
 
@@ -596,25 +596,25 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                 <ul className="space-y-3">
                                     <li className="flex items-center gap-3 text-slate-400 text-sm">
                                         <Mail className="w-5 h-5 text-orange-400" />
-                                        <a href="mailto:info@towtrucktt.com" className="hover:text-orange-400 transition-colors">info@towtrucktt.com</a>
+                                        <Link href="mailto:info@towtrucktt.com" className="hover:text-orange-400 transition-colors">info@towtrucktt.com</Link>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-400 text-sm">
                                         <PhoneCall className="w-5 h-5 text-orange-400" />
-                                        <a href="tel:+18681234567" className="hover:text-orange-400 transition-colors">+1 (868) 123-4567</a>
+                                        <Link href="tel:+18681234567" className="hover:text-orange-400 transition-colors">+1 (868) 123-4567</Link>
                                     </li>
                                 </ul>
 
                                 {/* Social */}
                                 <div className="flex items-center gap-3 mt-6">
-                                    <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-all duration-300">
+                                    <Link href="#" className="w-10 h-10 bg-slate-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-all duration-300">
                                         <Facebook className="w-5 h-5" />
-                                    </a>
-                                    <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-all duration-300">
+                                    </Link>
+                                    <Link href="#" className="w-10 h-10 bg-slate-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-all duration-300">
                                         <Instagram className="w-5 h-5" />
-                                    </a>
-                                    <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-green-500 rounded-lg flex items-center justify-center transition-all duration-300">
+                                    </Link>
+                                    <Link href="#" className="w-10 h-10 bg-slate-800 hover:bg-green-500 rounded-lg flex items-center justify-center transition-all duration-300">
                                         <MessageCircle className="w-5 h-5" />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -623,13 +623,21 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                         <div className="mt-12 pt-8 border-t border-slate-800">
                             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                                 <p className="text-slate-500 text-sm">
-                                    © {new Date().getFullYear()} TowTruckTT. All rights reserved. Design & Developed By <a className='text-blue-500' href="https://maktechsolution.com/">MakTech Solutions</a>
+                                    © {new Date().getFullYear()} TowTruckTT. All rights reserved. Design & Developed By <Link className='text-blue-500' href="https://maktechsolution.com/">MakTech Solutions</Link>
                                 </p>
-                                <div className="flex items-center gap-6 text-sm">
-                                    <a href="/admin/login" className="text-slate-500 hover:text-slate-400 transition-colors">Admin Portal</a>
-                                    {/* <a href="#" className="text-slate-500 hover:text-slate-400 transition-colors">Privacy Policy</a>
-                                    <a href="#" className="text-slate-500 hover:text-slate-400 transition-colors">Terms of Service</a> */}
+                                {auth.admin ?(
+                                    <>
+                                    <div className="flex items-center gap-6 text-sm">
+                                    <Link href="/admin/dashboard" className="text-slate-500 hover:text-slate-400 transition-colors">Admin Dashboard</Link>
                                 </div>
+                                    </>
+                                ):(
+                                    <>
+                                    <div className="flex items-center gap-6 text-sm">
+                                    <Link href="/admin/login" className="text-slate-500 hover:text-slate-400 transition-colors">Admin Login</Link>
+                                </div>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>

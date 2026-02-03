@@ -1,4 +1,4 @@
-import { Head, router, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import { UserCog, LogOut, CheckCircle, Trash2, Clock, Circle, ArrowLeft, Search, ChevronLeft, ChevronRight, Filter, Plus, X, Edit2 } from 'lucide-react';
 
@@ -188,13 +188,13 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
                                     <Plus className="w-4 h-4" />
                                     <span>Add Driver</span>
                                 </button>
-                                <a
+                                <Link
                                     href={route('admin.dashboard')}
                                     className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
                                 >
                                     <ArrowLeft className="w-4 h-4" />
                                     <span className="font-medium">Dashboard</span>
-                                </a>
+                                </Link>
                                 <button
                                     onClick={handleLogout}
                                     className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
