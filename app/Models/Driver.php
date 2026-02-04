@@ -45,7 +45,7 @@ class Driver extends Authenticatable
 
     public function getAvatarUrlAttribute(): string
     {
-        return Storage::disk('public')->url($this->avatar);
+        return auth_storage_url($this->avatar);
     }
 
     public function serviceArea(): BelongsTo

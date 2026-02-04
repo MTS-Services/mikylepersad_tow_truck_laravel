@@ -20,7 +20,7 @@ class PublicController extends Controller
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('phone_number', 'like', "%{$search}%");
+                    ->orWhere('phone_number', 'like', "%{$search}%");
             });
         }
 
@@ -37,6 +37,8 @@ class PublicController extends Controller
                 'phone_number' => $driver->phone_number,
                 'service_area' => $driver->serviceArea?->name,
                 'is_online' => $driver->is_online,
+                'avatar_url' => $driver->avatar_url,
+                'avatar' => $driver->avatar,
             ];
         });
 

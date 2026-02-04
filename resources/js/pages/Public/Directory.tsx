@@ -34,6 +34,8 @@ interface Driver {
     phone_number: string;
     service_area: string;
     is_online: boolean;
+    avatar?: string;
+    avatar_url?: string;
 }
 
 interface PaginationLink {
@@ -115,27 +117,27 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
         <>
             <Head title="Tow Truck Directory - Trinidad & Tobago | 24/7 Emergency Towing Services" />
 
-            <div className="min-h-screen bg-slate-50">
+            <div className="min-h-screen bg-gradient-to-b from-[#031b24] via-[#042c37] to-[#0b4f5d]">
                 {/* Header */}
-                <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+                <header className="sticky top-0 z-50 bg-gradient-to-r from-[#063547]/95 to-[#0f7c8c]/80 backdrop-blur-md border-b border-teal-800 shadow-lg">
                     <div className="container mx-auto px-4">
                         <div className="flex items-center justify-between h-16 md:h-20">
                             {/* Logo */}
-                            <Link href="/" className="flex items-center gap-3 group">
-                                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 via-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                            <Link href="/" className="flex items-center gap-3 group text-white">
+                                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                                     <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
                                 </div>
                                 <div className="hidden sm:block">
-                                    <h1 className="text-lg md:text-xl font-bold text-slate-900 leading-tight">Oncall<span className="text-orange-500">TT</span></h1>
-                                    <p className="text-xs text-slate-500 -mt-0.5">Trinidad & Tobago</p>
+                                    <h1 className="text-lg md:text-xl font-bold leading-tight">Oncall<span className="text-teal-300">TT</span></h1>
+                                    <p className="text-xs text-white/80 -mt-0.5">Trinidad & Tobago</p>
                                 </div>
                             </Link>
 
                             {/* Desktop Navigation */}
                             <nav className="hidden md:flex items-center gap-8">
-                                <Link href="#drivers" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">Find Drivers</Link>
-                                <Link href="#how-it-works" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">How It Works</Link>
-                                <Link href="#contact" className="text-slate-600 hover:text-orange-500 font-medium transition-colors duration-200">Contact</Link>
+                                <Link href="#drivers" className="text-white hover:text-teal-200 font-medium transition-colors duration-200">Find Drivers</Link>
+                                <Link href="#how-it-works" className="text-white hover:text-teal-200 font-medium transition-colors duration-200">How It Works</Link>
+                                <Link href="#contact" className="text-white hover:text-teal-200 font-medium transition-colors duration-200">Contact</Link>
                             </nav>
 
                             {/* Auth Buttons */}
@@ -144,7 +146,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                 <>
                                 <Link
                                     href="/driver/dashboard"
-                                    className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:text-orange-600 font-medium transition-colors duration-200"
+                                    className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white font-medium transition-colors duration-200"
                                 >
                                     <UserCog className="w-4 h-4" />
                                     Dashboard
@@ -154,14 +156,14 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                 <>
                                  <Link
                                     href="/driver/login"
-                                    className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:text-orange-600 font-medium transition-colors duration-200"
+                                    className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white font-medium transition-colors duration-200"
                                 >
                                     <LogIn className="w-4 h-4" />
                                     Driver Login
                                 </Link>
                                 <Link
                                     href="/driver/register"
-                                    className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                                    className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-0.5"
                                 >
                                     <UserPlus className="w-4 h-4" />
                                     Join as Driver
@@ -173,7 +175,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             {/* Mobile Menu Button */}
                             <button
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className="md:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
+                                className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
                             >
                                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                             </button>
@@ -181,14 +183,14 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
 
                         {/* Mobile Menu */}
                         {mobileMenuOpen && (
-                            <div className="md:hidden py-4 border-t border-slate-100 animate-in fade-in slide-in-from-top duration-300">
+                            <div className="md:hidden py-4 border-t border-teal-600 animate-in fade-in slide-in-from-top duration-300">
                                 <nav className="flex flex-col gap-2">
-                                    <Link href="#drivers" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">Find Drivers</Link>
-                                    <Link href="#how-it-works" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">How It Works</Link>
-                                    <Link href="#contact" className="px-4 py-2 text-slate-600 hover:text-orange-500 hover:bg-orange-50 rounded-lg font-medium transition-all">Contact</Link>
+                                    <Link href="#drivers" className="px-4 py-2 text-slate-100 hover:text-teal-200 hover:bg-teal-700/40 rounded-lg font-medium transition-all">Find Drivers</Link>
+                                    <Link href="#how-it-works" className="px-4 py-2 text-slate-100 hover:text-teal-200 hover:bg-teal-700/40 rounded-lg font-medium transition-all">How It Works</Link>
+                                    <Link href="#contact" className="px-4 py-2 text-slate-100 hover:text-teal-200 hover:bg-teal-700/40 rounded-lg font-medium transition-all">Contact</Link>
                                     <hr className="my-2 border-slate-200" />
-                                    <Link href="/driver/login" className="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition-all">Driver Login</Link>
-                                    <Link href="/driver/register" className="mx-4 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-center font-semibold rounded-xl">Join as Driver</Link>
+                                    <Link href="/driver/login" className="px-4 py-2 text-slate-100 hover:bg-slate-800 rounded-lg font-medium transition-all">Driver Login</Link>
+                                    <Link href="/driver/register" className="mx-4 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-center font-semibold rounded-xl shadow-lg">Join as Driver</Link>
                                 </nav>
                             </div>
                         )}
@@ -198,7 +200,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                 {/* Hero Section */}
                 <section className="relative overflow-hidden">
                     {/* Gradient Background with Pattern */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-orange-900"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0b3f4f] via-[#0f6f91] to-[#0ac9c9]"></div>
 
                     {/* Animated Background Elements */}
                     <div className="absolute inset-0">
@@ -231,13 +233,13 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
 
                     <div className="relative container mx-auto px-4 py-16 md:py-24 lg:py-32">
                         <div className="max-w-4xl mx-auto text-center">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 border border-orange-500/30 rounded-full text-orange-300 text-sm font-medium mb-6 animate-in fade-in slide-in-from-bottom duration-500">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/30 rounded-full text-white text-sm font-medium mb-6 animate-in fade-in slide-in-from-bottom duration-500">
                                 <Zap className="w-4 h-4" />
                                 <span>24/7 Emergency Towing Services</span>
                             </div>
 
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-in fade-in slide-in-from-bottom duration-700">
-                                Find Trusted <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">Tow Truck</span> Services in Trinidad
+                                Find Trusted <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-300">Tow Truck</span> Services in Trinidad
                             </h1>
 
                             <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom duration-700 delay-100">
@@ -248,23 +250,23 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             <div className="flex flex-wrap justify-center gap-6 md:gap-12 mb-10 animate-in fade-in slide-in-from-bottom duration-700 delay-200">
                                 <div className="text-center">
                                     <div className="text-3xl md:text-4xl font-bold text-white">{stats.total_drivers}</div>
-                                    <div className="text-slate-400 text-sm">Registered Drivers</div>
+                                    <div className="text-teal-200 text-sm">Registered Drivers</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="flex items-center justify-center gap-2 text-3xl md:text-4xl font-bold text-green-400">
+                                    <div className="flex items-center justify-center gap-2 text-3xl md:text-4xl font-bold text-cyan-300">
                                         <Circle className="w-3 h-3 fill-green-400" />
                                         {stats.online_drivers}
                                     </div>
-                                    <div className="text-slate-400 text-sm">Online Now</div>
+                                    <div className="text-teal-200 text-sm">Online Now</div>
                                 </div>
                                 <div className="text-center">
                                     <div className="text-3xl md:text-4xl font-bold text-white">{stats.total_areas}</div>
-                                    <div className="text-slate-400 text-sm">Service Areas</div>
+                                    <div className="text-teal-200 text-sm">Service Areas</div>
                                 </div>
                             </div>
 
                             {/* Search/Filter Box */}
-                            <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6 max-w-3xl mx-auto animate-in fade-in zoom-in duration-700 delay-300">
+                            <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl p-4 md:p-6 max-w-3xl mx-auto animate-in fade-in zoom-in duration-700 delay-300 border border-white/40">
                                 <div className="flex flex-col md:flex-row gap-4">
                                     <div className="flex-1 relative">
                                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -274,7 +276,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                             value={searchTerm}
                                             onChange={(e) => setSearchTerm(e.target.value)}
                                             onKeyDown={handleKeyPress}
-                                            className="w-full pl-12 pr-4 py-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-slate-900"
+                                            className="w-full pl-12 pr-4 py-3.5 border border-white/40 rounded-xl focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition-all duration-200 text-slate-900 bg-white/60"
                                         />
                                     </div>
                                     <div className="relative md:w-48">
@@ -282,7 +284,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                         <select
                                             value={selectedArea}
                                             onChange={(e) => handleAreaChange(e.target.value)}
-                                            className="w-full pl-12 pr-10 py-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-slate-900 appearance-none bg-white cursor-pointer"
+                                            className="w-full pl-12 pr-10 py-3.5 border border-white/40 rounded-xl focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition-all duration-200 text-slate-900 appearance-none bg-white/60 cursor-pointer"
                                         >
                                             <option value="all">All Areas</option>
                                             {serviceAreas.map(area => (
@@ -293,7 +295,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                     </div>
                                     <button
                                         onClick={handleSearch}
-                                        className="px-6 py-3.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
+                                        className="px-6 py-3.5 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl"
                                     >
                                         Search
                                     </button>
@@ -345,151 +347,145 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             </div>
                         ) : (
                             <>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                                {drivers.data.map((driver: Driver, index: number) => (
-                                    <div
-                                        key={driver.id}
-                                        className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100 hover:border-orange-200 animate-in fade-in slide-in-from-bottom duration-500"
-                                        style={{ animationDelay: `${index * 75}ms` }}
-                                    >
-                                        {/* Card Header with Gradient */}
-                                        <div className={`relative h-24 ${driver.is_online
-                                            ? 'bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500'
-                                            : 'bg-gradient-to-r from-slate-400 via-slate-500 to-slate-600'}`}>
-                                            <div className="absolute inset-0 bg-black/10"></div>
-                                            {/* Status Badge */}
-                                            <div className={`absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg ${
-                                                driver.is_online
-                                                    ? 'bg-white text-green-600'
-                                                    : 'bg-white/90 text-slate-600'
-                                            }`}>
-                                                <span className={`w-2 h-2 rounded-full ${driver.is_online ? 'bg-green-500 animate-pulse' : 'bg-slate-400'}`}></span>
-                                                {driver.is_online ? 'ONLINE' : 'OFFLINE'}
-                                            </div>
-                                            {/* Avatar */}
-                                            <div className="absolute -bottom-10 left-6">
-                                                <div className="w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center border-4 border-white group-hover:scale-105 transition-transform duration-300">
-                                                    <div className={`w-full h-full rounded-xl flex items-center justify-center text-2xl font-bold text-white ${
-                                                        driver.is_online
-                                                            ? 'bg-gradient-to-br from-orange-400 to-red-500'
-                                                            : 'bg-gradient-to-br from-slate-400 to-slate-500'
-                                                    }`}>
-                                                        {driver.name.charAt(0).toUpperCase()}
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                    {drivers.data.map((driver: Driver, index: number) => (
+                                        <div
+                                            key={driver.id}
+                                            className="group bg-slate-100/70 dark:bg-slate-900/60 rounded-2xl shadow-2xl hover:shadow-[0_25px_45px_rgba(0,0,0,0.25)] transition-all duration-500 overflow-hidden border border-white/30 hover:border-teal-300 animate-in fade-in slide-in-from-bottom"
+                                            style={{ animationDelay: `${index * 75}ms` }}
+                                        >
+                                            {/* Card Header with Gradient */}
+                                            <div className={`relative h-24 ${driver.is_online
+                                                ? 'bg-gradient-to-r from-[#1ac6b7] via-[#04a0d0] to-[#096c93]'
+                                                : 'bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800'}`}>
+                                                <div className="absolute inset-0 bg-black/10"></div>
+                                                <div className={`absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg ${
+                                                    driver.is_online
+                                                        ? 'bg-white text-teal-600'
+                                                        : 'bg-white/90 text-slate-500'
+                                                }`}>
+                                                    <span className={`w-2 h-2 rounded-full ${driver.is_online ? 'bg-teal-400 animate-pulse' : 'bg-slate-400'}`}></span>
+                                                    {driver.is_online ? 'ONLINE' : 'OFFLINE'}
+                                                </div>
+                                                <div className="absolute -bottom-10 left-6">
+                                                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center border-4 border-white group-hover:scale-105 transition-transform duration-300">
+                                                        <div className={`w-full h-full rounded-xl flex items-center justify-center text-2xl font-bold text-white ${
+                                                            driver.is_online
+                                                                ? 'bg-gradient-to-br from-teal-500 to-cyan-500'
+                                                                : 'bg-gradient-to-br from-slate-500 to-slate-600'
+                                                        }`}>
+                                                            <img className="rounded-xl" src={driver.avatar_url} alt={driver.name} />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        {/* Card Content */}
-                                        <div className="pt-14 pb-6 px-6">
-                                            <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-orange-600 transition-colors">
-                                                {driver.name}
-                                            </h3>
-                                            <div className="flex items-center gap-2 text-slate-500 mb-4">
-                                                <MapPin className="w-4 h-4" />
-                                                <span className="text-sm font-medium">{driver.service_area}</span>
-                                            </div>
-
-                                            {/* Features */}
-                                            <div className="flex items-center gap-4 mb-6 text-xs text-slate-500">
-                                                <div className="flex items-center gap-1">
-                                                    <Shield className="w-3.5 h-3.5 text-blue-500" />
-                                                    <span>Verified</span>
+                                            <div className="pt-14 pb-6 px-6">
+                                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-teal-400 transition-colors">
+                                                    {driver.name}
+                                                </h3>
+                                                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-300 mb-4">
+                                                    <MapPin className="w-4 h-4" />
+                                                    <span className="text-sm font-medium">{driver.service_area}</span>
                                                 </div>
-                                                <div className="flex items-center gap-1">
-                                                    <Clock className="w-3.5 h-3.5 text-orange-500" />
-                                                    <span>24/7</span>
-                                                </div>
-                                                <div className="flex items-center gap-1">
-                                                    <Star className="w-3.5 h-3.5 text-yellow-500" />
-                                                    <span>Professional</span>
-                                                </div>
-                                            </div>
 
-                                            {/* Action Buttons */}
-                                            <div className="space-y-3">
-                                                <Link
-                                                    href={`https://wa.me/${formatPhoneForWhatsApp(driver.phone_number)}?text=Hi, I need towing assistance. Are you available?`}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 group/btn"
-                                                >
-                                                    <MessageCircle className="w-5 h-5 group-hover/btn:animate-bounce" />
-                                                    <span>WhatsApp Now</span>
-                                                </Link>
+                                                <div className="flex items-center gap-6 mb-6 text-xs text-slate-500 dark:text-slate-300">
+                                                    <div className="flex items-center gap-1">
+                                                        <Shield className="w-3.5 h-3.5 text-teal-400" />
+                                                        <span>Verified</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-1">
+                                                        <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                                                        <span>24/7</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-1">
+                                                        <Star className="w-3.5 h-3.5 text-amber-400" />
+                                                        <span>Professional</span>
+                                                    </div>
+                                                </div>
 
-                                                <Link
-                                                    href={`tel:${driver.phone_number}`}
-                                                    className="flex items-center justify-center gap-3 w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3.5 px-6 rounded-xl transition-all duration-300"
-                                                >
-                                                    <Phone className="w-5 h-5" />
-                                                    <span>{driver.phone_number}</span>
-                                                </Link>
+                                                <div className="space-y-3">
+                                                    <Link
+                                                        href={`https://wa.me/${formatPhoneForWhatsApp(driver.phone_number)}?text=Hi, I need towing assistance. Are you available?`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#1ac6b7] to-[#0b5d8d] hover:from-[#13a29c] hover:to-[#0c4b73] text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 group/btn"
+                                                    >
+                                                        <MessageCircle className="w-5 h-5 group-hover/btn:animate-bounce" />
+                                                        <span>WhatsApp Now</span>
+                                                    </Link>
+
+                                                    <Link
+                                                        href={`tel:${driver.phone_number}`}
+                                                        className="flex items-center justify-center gap-3 w-full bg-white/70 hover:bg-white/90 text-slate-900 font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-inner"
+                                                    >
+                                                        <Phone className="w-5 h-5" />
+                                                        <span>{driver.phone_number}</span>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Pagination */}
-                            {drivers.last_page > 1 && (
-                                <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                    <p className="text-slate-600 text-sm">
-                                        Showing {drivers.from} to {drivers.to} of {drivers.total} drivers
-                                    </p>
-                                    <div className="flex items-center gap-2">
-                                        <button
-                                            onClick={() => goToPage(drivers.links[0]?.url)}
-                                            disabled={drivers.current_page === 1}
-                                            className="p-2 rounded-lg border border-slate-200 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                        >
-                                            <ChevronLeft className="w-5 h-5" />
-                                        </button>
-
-                                        {drivers.links.slice(1, -1).map((link, idx) => (
-                                            <button
-                                                key={idx}
-                                                onClick={() => goToPage(link.url)}
-                                                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                                                    link.active
-                                                        ? 'bg-orange-500 text-white'
-                                                        : 'border border-slate-200 hover:bg-slate-100 text-slate-700'
-                                                }`}
-                                                dangerouslySetInnerHTML={{ __html: link.label }}
-                                            />
-                                        ))}
-
-                                        <button
-                                            onClick={() => goToPage(drivers.links[drivers.links.length - 1]?.url)}
-                                            disabled={drivers.current_page === drivers.last_page}
-                                            className="p-2 rounded-lg border border-slate-200 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                        >
-                                            <ChevronRight className="w-5 h-5" />
-                                        </button>
-                                    </div>
+                                    ))}
                                 </div>
-                            )}
+
+                                {drivers.last_page > 1 && (
+                                    <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                        <p className="text-slate-600 text-sm">
+                                            Showing {drivers.from} to {drivers.to} of {drivers.total} drivers
+                                        </p>
+                                        <div className="flex items-center gap-2">
+                                            <button
+                                                onClick={() => goToPage(drivers.links[0]?.url)}
+                                                disabled={drivers.current_page === 1}
+                                                className="p-2 rounded-lg border border-slate-200 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            >
+                                                <ChevronLeft className="w-5 h-5" />
+                                            </button>
+
+                                            {drivers.links.slice(1, -1).map((link, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    onClick={() => goToPage(link.url)}
+                                                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                                                        link.active
+                                                            ? 'bg-orange-500 text-white'
+                                                            : 'border border-slate-200 hover:bg-slate-100 text-slate-700'
+                                                    }`}
+                                                    dangerouslySetInnerHTML={{ __html: link.label }}
+                                                />
+                                            ))}
+
+                                            <button
+                                                onClick={() => goToPage(drivers.links[drivers.links.length - 1]?.url)}
+                                                disabled={drivers.current_page === drivers.last_page}
+                                                className="p-2 rounded-lg border border-slate-200 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            >
+                                                <ChevronRight className="w-5 h-5" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </>
                         )}
                     </div>
                 </section>
 
                 {/* CTA Section */}
-                <section className="py-16 md:py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+                <section className="py-16 md:py-24 bg-gradient-to-br from-[#01212b] via-[#053b4f] to-[#0c6b78] relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
-                        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500 rounded-full blur-3xl"></div>
-                        <div className="absolute bottom-0 left-0 w-72 h-72 bg-red-500 rounded-full blur-3xl"></div>
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/40 rounded-full blur-3xl"></div>
+                        <div className="absolute bottom-0 left-0 w-72 h-72 bg-sky-500/30 rounded-full blur-3xl"></div>
                     </div>
 
                     <div className="relative container mx-auto px-4">
                         <div className="max-w-4xl mx-auto text-center">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 border border-orange-500/30 rounded-full text-orange-300 text-sm font-medium mb-6">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/30 rounded-full text-teal-200 text-sm font-medium mb-6">
                                 <Truck className="w-4 h-4" />
                                 <span>Join Our Network</span>
                             </div>
 
                             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-                                Are You a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">Tow Truck Driver?</span>
+                                Are You a <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-300">Tow Truck Driver?</span>
                             </h2>
 
                             <p className="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
@@ -499,7 +495,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                 <Link
                                     href="/driver/register"
-                                    className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold text-lg rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1"
+                                    className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-bold text-lg rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1"
                                 >
                                     <UserPlus className="w-5 h-5" />
                                     Register Now - It's Free
@@ -516,7 +512,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             {/* Benefits */}
                             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                                 <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-                                    <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <div className="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center shrink-0">
                                         <Users className="w-5 h-5 text-green-400" />
                                     </div>
                                     <div>
@@ -525,7 +521,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-                                    <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <div className="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center shrink-0">
                                         <Zap className="w-5 h-5 text-blue-400" />
                                     </div>
                                     <div>
@@ -534,7 +530,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-                                    <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <div className="w-10 h-10 bg-sky-500/20 rounded-lg flex items-center justify-center shrink-0">
                                         <Heart className="w-5 h-5 text-orange-400" />
                                     </div>
                                     <div>
@@ -554,13 +550,16 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             {/* Brand */}
                             <div className="lg:col-span-1">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-                                        <Truck className="w-6 h-6 text-white" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold">Oncall<span className="text-orange-400">TT</span></h3>
-                                        <p className="text-xs text-slate-400">Trinidad & Tobago</p>
-                                    </div>
+                                   <Link href="/" className="flex items-center gap-3 group text-white">
+                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                                            <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                                        </div>
+                                        <div className="hidden sm:block">
+                                            <h1 className="text-lg md:text-xl font-bold leading-tight">Oncall<span className="text-teal-300">TT</span></h1>
+                                            <p className="text-xs text-white/80 -mt-0.5">Trinidad & Tobago</p>
+                                        </div>
+                                    </Link>
+
                                 </div>
                                 <p className="text-slate-400 text-sm leading-relaxed">
                                     The #1 tow truck directory in Trinidad & Tobago. Connecting drivers with customers since 2024.

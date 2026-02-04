@@ -8,6 +8,7 @@ use App\Models\ServiceArea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
@@ -21,8 +22,8 @@ class DriverManagementController extends Controller
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%")
-                  ->orWhere('phone_number', 'like', "%{$search}%");
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('phone_number', 'like', "%{$search}%");
             });
         }
 
@@ -41,6 +42,7 @@ class DriverManagementController extends Controller
             return [
                 'id' => $driver->id,
                 'name' => $driver->name,
+                'avatar_url' => $driver->avatar_url,
                 'email' => $driver->email,
                 'phone_number' => $driver->phone_number,
                 'service_area_id' => $driver->service_area_id,
@@ -74,10 +76,16 @@ class DriverManagementController extends Controller
             'service_area_id' => ['required', 'exists:service_areas,id'],
             'password' => ['required', 'string', 'min:8'],
             'is_approved' => ['boolean'],
+            'avatar' => ['nullable', 'image'],
         ]);
+
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $validated['avatar'] = $request->file('avatar')->store('drivers', 'public');
+        }
 
         $driver = Driver::create([
             'name' => $validated['name'],
+            'avatar' => $validated['avatar'] ?? null,
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
             'service_area_id' => $validated['service_area_id'],
@@ -99,13 +107,21 @@ class DriverManagementController extends Controller
             'service_area_id' => ['required', 'exists:service_areas,id'],
             'password' => ['nullable', 'string', 'min:8'],
             'is_approved' => ['boolean'],
+            'avatar' => ['nullable', 'image'],
         ]);
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            if ($driver->avatar) {
+                Storage::disk('public')->delete($driver->avatar);
+            }
+            $validated['avatar'] = $request->file('avatar')->store('drivers', 'public');
+        }
 
         $updateData = [
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
             'service_area_id' => $validated['service_area_id'],
+            'avatar' => $validated['avatar'] ?? null,
         ];
 
         if (!empty($validated['password'])) {
