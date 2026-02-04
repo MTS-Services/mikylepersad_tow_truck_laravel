@@ -142,34 +142,34 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
 
                             {/* Auth Buttons */}
                             <div className="hidden md:flex items-center gap-3">
-                               { auth.driver ? (
-                                <>
-                                <Link
-                                    href="/driver/dashboard"
-                                    className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white font-medium transition-colors duration-200"
-                                >
-                                    <UserCog className="w-4 h-4" />
-                                    Dashboard
-                                </Link>
-                                </>
-                               ):(
-                                <>
-                                 <Link
-                                    href="/driver/login"
-                                    className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white font-medium transition-colors duration-200"
-                                >
-                                    <LogIn className="w-4 h-4" />
-                                    Driver Login
-                                </Link>
-                                <Link
-                                    href="/driver/register"
-                                    className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-0.5"
-                                >
-                                    <UserPlus className="w-4 h-4" />
-                                    Join as Driver
-                                </Link>
-                                </>
-                               )}
+                                {auth.driver ? (
+                                    <>
+                                        <Link
+                                            href="/driver/dashboard"
+                                            className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white font-medium transition-colors duration-200"
+                                        >
+                                            <UserCog className="w-4 h-4" />
+                                            Dashboard
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link
+                                            href="/driver/login"
+                                            className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white font-medium transition-colors duration-200"
+                                        >
+                                            <LogIn className="w-4 h-4" />
+                                            Driver Login
+                                        </Link>
+                                        <Link
+                                            href="/driver/register"
+                                            className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-0.5"
+                                        >
+                                            <UserPlus className="w-4 h-4" />
+                                            Join as Driver
+                                        </Link>
+                                    </>
+                                )}
                             </div>
 
                             {/* Mobile Menu Button */}
@@ -243,7 +243,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             </h1>
 
                             <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom duration-700 delay-100">
-                                Connect with verified tow truck drivers instantly. Fast, reliable, and available when you need them most.
+                                Connect with tow truck drivers instantly. Fast, reliable, and available when you need them most.
                             </p>
 
                             {/* Stats */}
@@ -267,7 +267,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
 
                             {/* Search/Filter Box */}
                             <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl p-4 md:p-6 max-w-3xl mx-auto animate-in fade-in zoom-in duration-700 delay-300 border border-white/40">
-                                <div className="flex flex-col md:flex-row gap-4">
+                                <div className="flex flex-col md:flex-row gap-2 md:gap-4">
                                     <div className="flex-1 relative">
                                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                                         <input
@@ -279,7 +279,8 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                             className="w-full pl-12 pr-4 py-3.5 border border-white/40 rounded-xl focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition-all duration-200 text-slate-900 bg-white/60"
                                         />
                                     </div>
-                                    <div className="relative md:w-48">
+                                    <div className='flex items-center justify-center'>OR</div>
+                                    <div className="relative md:w-48 mb-2 md:mb-0">
                                         <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                                         <select
                                             value={selectedArea}
@@ -307,7 +308,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                     {/* Wave Divider */}
                     <div className="absolute bottom-0 left-0 right-0">
                         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#ffffff"/>
+                            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#ffffff" />
                         </svg>
                     </div>
                 </section>
@@ -359,21 +360,19 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                 ? 'bg-gradient-to-r from-[#1ac6b7] via-[#04a0d0] to-[#096c93]'
                                                 : 'bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800'}`}>
                                                 <div className="absolute inset-0 bg-black/10"></div>
-                                                <div className={`absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg ${
-                                                    driver.is_online
-                                                        ? 'bg-white text-teal-600'
-                                                        : 'bg-white/90 text-slate-500'
-                                                }`}>
+                                                <div className={`absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg ${driver.is_online
+                                                    ? 'bg-white text-teal-600'
+                                                    : 'bg-white/90 text-slate-500'
+                                                    }`}>
                                                     <span className={`w-2 h-2 rounded-full ${driver.is_online ? 'bg-teal-400 animate-pulse' : 'bg-slate-400'}`}></span>
                                                     {driver.is_online ? 'ONLINE' : 'OFFLINE'}
                                                 </div>
                                                 <div className="absolute -bottom-10 left-6">
                                                     <div className="w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center border-4 border-white group-hover:scale-105 transition-transform duration-300">
-                                                        <div className={`w-full h-full rounded-xl flex items-center justify-center text-2xl font-bold text-white ${
-                                                            driver.is_online
-                                                                ? 'bg-gradient-to-br from-teal-500 to-cyan-500'
-                                                                : 'bg-gradient-to-br from-slate-500 to-slate-600'
-                                                        }`}>
+                                                        <div className={`w-full h-full rounded-xl flex items-center justify-center text-2xl font-bold text-white ${driver.is_online
+                                                            ? 'bg-gradient-to-br from-teal-500 to-cyan-500'
+                                                            : 'bg-gradient-to-br from-slate-500 to-slate-600'
+                                                            }`}>
                                                             <img className="rounded-xl" src={driver.avatar_url} alt={driver.name} />
                                                         </div>
                                                     </div>
@@ -390,10 +389,10 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                 </div>
 
                                                 <div className="flex items-center gap-6 mb-6 text-xs text-slate-500 dark:text-slate-300">
-                                                    <div className="flex items-center gap-1">
+                                                    {/* <div className="flex items-center gap-1">
                                                         <Shield className="w-3.5 h-3.5 text-teal-400" />
                                                         <span>Verified</span>
-                                                    </div>
+                                                    </div> */}
                                                     <div className="flex items-center gap-1">
                                                         <Clock className="w-3.5 h-3.5 text-cyan-400" />
                                                         <span>24/7</span>
@@ -446,11 +445,10 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                 <button
                                                     key={idx}
                                                     onClick={() => goToPage(link.url)}
-                                                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                                                        link.active
-                                                            ? 'bg-orange-500 text-white'
-                                                            : 'border border-slate-200 hover:bg-slate-100 text-slate-700'
-                                                    }`}
+                                                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${link.active
+                                                        ? 'bg-orange-500 text-white'
+                                                        : 'border border-slate-200 hover:bg-slate-100 text-slate-700'
+                                                        }`}
                                                     dangerouslySetInnerHTML={{ __html: link.label }}
                                                 />
                                             ))}
@@ -550,7 +548,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             {/* Brand */}
                             <div className="lg:col-span-1">
                                 <div className="flex items-center gap-3 mb-4">
-                                   <Link href="/" className="flex items-center gap-3 group text-white">
+                                    <Link href="/" className="flex items-center gap-3 group text-white">
                                         <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                                             <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
                                         </div>
@@ -624,17 +622,17 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                 <p className="text-slate-500 text-sm">
                                     © {new Date().getFullYear()} TowTruckTT. All rights reserved. Design & Developed By <Link className='text-blue-500' href="https://maktechsolution.com/">MakTech Solutions</Link>
                                 </p>
-                                {auth.admin ?(
+                                {auth.admin ? (
                                     <>
-                                    <div className="flex items-center gap-6 text-sm">
-                                    <Link href="/admin/dashboard" className="text-slate-500 hover:text-slate-400 transition-colors">Admin Dashboard</Link>
-                                </div>
+                                        <div className="flex items-center gap-6 text-sm">
+                                            <Link href="/admin/dashboard" className="text-slate-500 hover:text-slate-400 transition-colors">Admin Dashboard</Link>
+                                        </div>
                                     </>
-                                ):(
+                                ) : (
                                     <>
-                                    <div className="flex items-center gap-6 text-sm">
-                                    <Link href="/admin/login" className="text-slate-500 hover:text-slate-400 transition-colors">Admin Login</Link>
-                                </div>
+                                        <div className="flex items-center gap-6 text-sm">
+                                            <Link href="/admin/login" className="text-slate-500 hover:text-slate-400 transition-colors">Admin Login</Link>
+                                        </div>
                                     </>
                                 )}
                             </div>

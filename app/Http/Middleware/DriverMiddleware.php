@@ -16,10 +16,10 @@ class DriverMiddleware
         }
 
         $driver = Auth::guard('driver')->user();
-        // if (!$driver->is_approved) {
-        //     Auth::guard('driver')->logout();
-        //     return redirect()->route('driver.login')->with('error', 'Your account is pending approval.');
-        // }
+        if (!$driver->is_approved) {
+            Auth::guard('driver')->logout();
+            return redirect()->route('driver.login')->with('error', 'Your account is pending approval.');
+        }
 
         return $next($request);
     }
