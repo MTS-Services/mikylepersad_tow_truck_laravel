@@ -128,7 +128,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                     <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
                                 </div>
                                 <div className="hidden sm:block">
-                                    <h1 className="text-lg md:text-xl font-bold leading-tight">Oncall<span className="text-teal-300">TT</span></h1>
+                                    <h1 className="text-lg md:text-xl font-bold leading-tight">Towtruck<span className="text-teal-300">TT</span></h1>
                                     <p className="text-xs text-white/80 -mt-0.5">Trinidad & Tobago</p>
                                 </div>
                             </Link>
@@ -553,7 +553,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                             <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
                                         </div>
                                         <div className="hidden sm:block">
-                                            <h1 className="text-lg md:text-xl font-bold leading-tight">Oncall<span className="text-teal-300">TT</span></h1>
+                                            <h1 className="text-lg md:text-xl font-bold leading-tight">Towtruck<span className="text-teal-300">TT</span></h1>
                                             <p className="text-xs text-white/80 -mt-0.5">Trinidad & Tobago</p>
                                         </div>
                                     </Link>
