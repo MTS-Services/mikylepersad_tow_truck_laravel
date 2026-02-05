@@ -593,11 +593,12 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                 <ul className="space-y-3">
                                     <li className="flex items-center gap-3 text-slate-400 text-sm">
                                         <Mail className="w-5 h-5 text-orange-400" />
-                                        <Link href="mailto:info@towtrucktt.com" className="hover:text-orange-400 transition-colors">info@towtrucktt.com</Link>
+                                        {/* <a href="mailto:info@towtrucktt.com" className="hover:text-orange-400 transition-colors">m.alexpersad@gmail.com</a> */}
+                                        <a href="m.alexpersad@gmail.com" className="hover:text-orange-400 transition-colors">m.alexpersad@gmail.com</a>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-400 text-sm">
                                         <PhoneCall className="w-5 h-5 text-orange-400" />
-                                        <Link href="tel:+18681234567" className="hover:text-orange-400 transition-colors">+1 (868) 123-4567</Link>
+                                        <a href="tel:+18681234567" className="hover:text-orange-400 transition-colors">+1 (868) 123-4567</a>
                                     </li>
                                 </ul>
 
