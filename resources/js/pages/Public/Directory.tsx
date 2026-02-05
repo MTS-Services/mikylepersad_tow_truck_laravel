@@ -594,7 +594,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                     <li className="flex items-center gap-3 text-slate-400 text-sm">
                                         <Mail className="w-5 h-5 text-orange-400" />
                                         {/* <a href="mailto:info@towtrucktt.com" className="hover:text-orange-400 transition-colors">m.alexpersad@gmail.com</a> */}
-                                        <a href="m.alexpersad@gmail.com" className="hover:text-orange-400 transition-colors">m.alexpersad@gmail.com</a>
+                                        <a href="mailto:m.alexpersad@gmail.com" className="hover:text-orange-400 transition-colors">m.alexpersad@gmail.com</a>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-400 text-sm">
                                         <PhoneCall className="w-5 h-5 text-orange-400" />
