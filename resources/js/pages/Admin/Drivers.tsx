@@ -85,7 +85,7 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
     };
 
     const handleSearch = () => {
-        router.get(route('admin.drivers'), { search: searchTerm, status: statusFilter }, {
+        router.get(route('admin.drivers.index'), { search: searchTerm, status: statusFilter }, {
             preserveState: true,
             preserveScroll: true,
         });
@@ -93,7 +93,7 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
 
     const handleStatusChange = (status: string) => {
         setStatusFilter(status);
-        router.get(route('admin.drivers'), { search: searchTerm, status }, {
+        router.get(route('admin.drivers.index'), { search: searchTerm, status }, {
             preserveState: true,
             preserveScroll: true,
         });
@@ -108,7 +108,7 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
     const clearFilters = () => {
         setSearchTerm('');
         setStatusFilter('');
-        router.get(route('admin.drivers'), {}, { preserveState: true });
+        router.get(route('admin.drivers.index'), {}, { preserveState: true });
     };
 
     const goToPage = (url: string | null) => {

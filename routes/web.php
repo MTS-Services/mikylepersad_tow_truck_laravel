@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\DriverManagementController;
+use App\Http\Controllers\Admin\ServiceAreaController;
 use App\Http\Controllers\Driver\DriverAuthController;
 use App\Http\Controllers\Driver\DriverDashboardController;
 use App\Http\Controllers\PublicController;
@@ -23,6 +24,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/drivers/{driver}', [DriverManagementController::class, 'update'])->name('drivers.update');
         Route::post('/drivers/{driver}/approve', [DriverManagementController::class, 'approve'])->name('drivers.approve');
         Route::delete('/drivers/{driver}', [DriverManagementController::class, 'destroy'])->name('drivers.destroy');
+        Route::get('/service-areas', [ServiceAreaController::class, 'index'])->name('service-areas.index');
+        Route::post('/service-areas', [ServiceAreaController::class, 'store'])->name('service-areas.store');
+        Route::put('/service-areas/{serviceArea}', [ServiceAreaController::class, 'update'])->name('service-areas.update');
+        Route::delete('/service-areas/{serviceArea}', [ServiceAreaController::class, 'destroy'])->name('service-areas.destroy');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
     });
 });
