@@ -38,7 +38,7 @@ class DriverManagementController extends Controller
             }
         }
 
-        $drivers = $query->paginate(10)->through(function ($driver) {
+        $drivers = $query->paginate(10)->appends($request->only('search', 'status'))->through(function ($driver) {
             return [
                 'id' => $driver->id,
                 'name' => $driver->name,
