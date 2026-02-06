@@ -1,5 +1,5 @@
 import { Head, Link, router } from '@inertiajs/react';
-import { Users, CheckCircle, Clock, Wifi, LogOut, UserCog, Mail, Phone } from 'lucide-react';
+import { Users, CheckCircle, Clock, Wifi, LogOut, UserCog, Mail, Phone, Map } from 'lucide-react';
 
 interface Stats {
     total_drivers: number;
@@ -59,7 +59,7 @@ export default function AdminDashboard({ stats, recentDrivers }: Props) {
                 </nav>
 
                 <div className="container mx-auto px-4 py-8 max-w-7xl">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
                         <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-200 animate-in fade-in slide-in-from-left duration-500">
                             <div className="flex items-center justify-between mb-4">
                                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
@@ -99,18 +99,35 @@ export default function AdminDashboard({ stats, recentDrivers }: Props) {
                             <h3 className="text-3xl font-bold text-slate-900 mb-1">{stats.online_drivers}</h3>
                             <p className="text-slate-600 text-sm font-medium">Online Now</p>
                         </div>
+                        <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-200 animate-in fade-in slide-in-from-left duration-500 delay-400">
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center">
+                                    <Map className="w-6 h-6 text-teal-600" />
+                                </div>
+                            </div>
+                            <h3 className="text-3xl font-bold text-slate-900 mb-1">{stats.total_areas}</h3>
+                            <p className="text-slate-600 text-sm font-medium">Service Areas</p>
+                        </div>
                     </div>
 
                     <div className="bg-white rounded-2xl shadow-lg border border-slate-200 animate-in fade-in slide-in-from-bottom duration-700">
                         <div className="p-6 border-b border-slate-200">
                             <div className="flex items-center justify-between">
                                 <h2 className="text-2xl font-bold text-slate-900">Recent Drivers</h2>
-                                <Link
-                                    href={route('admin.drivers.index')}
-                                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
-                                >
-                                    View All Drivers
-                                </Link>
+                                <div className="flex items-center gap-3">
+                                    <Link
+                                        href={route('admin.drivers.index')}
+                                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
+                                    >
+                                        View All Drivers
+                                    </Link>
+                                    <Link
+                                        href={route('admin.service-areas.index')}
+                                        className="px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
+                                    >
+                                        Manage Service Areas
+                                    </Link>
+                                </div>
                             </div>
                         </div>
 

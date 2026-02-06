@@ -43,7 +43,7 @@ class PublicController extends Controller
         });
 
         $serviceAreas = ServiceArea::where('is_active', true)
-            ->orderBy('sort_order')
+            ->orderBy('name')
             ->pluck('name');
 
         $stats = [

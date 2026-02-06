@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
+use App\Models\ServiceArea;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
@@ -16,6 +17,7 @@ class AdminDashboardController extends Controller
             'approved_drivers' => Driver::approved()->count(),
             'pending_drivers' => Driver::where('is_approved', false)->count(),
             'online_drivers' => Driver::approved()->online()->count(),
+            'total_areas' => ServiceArea::count(),
         ];
 
         $recentDrivers = Driver::with('serviceArea')
