@@ -113,6 +113,13 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
         }
     };
 
+    const [areaPage, setAreaPage] = useState(1);
+    const areasPerPage = 8;
+    const areaPageCount = Math.max(1, Math.ceil(serviceAreas.length / areasPerPage));
+    const paginatedAreas = serviceAreas.slice((areaPage - 1) * areasPerPage, areaPage * areasPerPage);
+
+    const areaPageLabel = (index: number) => serviceAreas[(areaPage - 1) * areasPerPage + index];
+
     return (
         <>
             <Head title="Tow Truck Directory - Trinidad & Tobago | 24/7 Emergency Towing Services" />
@@ -465,6 +472,57 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                 )}
                             </>
                         )}
+                    </div>
+                </section>
+
+                {/* Areas Showcase Section */}
+                <section className="py-16 bg-[#031b24] text-white">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+                            <div>
+                                <p className="text-sm uppercase tracking-[0.3em] text-teal-300">Service Areas</p>
+                                <h3 className="text-3xl md:text-4xl font-bold text-white">Where We Operate</h3>
+                                <p className="text-slate-300 max-w-2xl mt-2">
+                                    Explore every area covered by our verified tow truck network. Swipe through the cards to see each region we serve.
+                                </p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm text-slate-300">Page {areaPage} of {areaPageCount}</span>
+                                <button
+                                    onClick={() => setAreaPage(prev => Math.max(1, prev - 1))}
+                                    disabled={areaPage === 1}
+                                    className="px-3 py-2 bg-teal-500 hover:bg-teal-400 rounded-lg text-white disabled:opacity-40"
+                                >
+                                    Prev
+                                </button>
+                                <button
+                                    onClick={() => setAreaPage(prev => Math.min(areaPageCount, prev + 1))}
+                                    disabled={areaPage === areaPageCount}
+                                    className="px-3 py-2 bg-teal-500 hover:bg-teal-400 rounded-lg text-white disabled:opacity-40"
+                                >
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {paginatedAreas.map(area => (
+                                <div
+                                    key={area}
+                                    className="group rounded-2xl border border-white/10 bg-gradient-to-br from-[#03323f] via-[#0a4c5b] to-[#0f6c7a] p-6 shadow-2xl transition duration-300 hover:from-[#0d5c6b] hover:via-[#13889b] hover:to-[#0fd3d5] hover:-translate-y-1 hover:shadow-[0_35px_70px_rgba(15,118,141,0.4)]"
+                                >
+                                    <p className="text-xs text-teal-200 uppercase tracking-[0.4em] mb-4">Area</p>
+                                    <h4 className="text-lg font-semibold text-white group-hover:text-cyan-100">{area}</h4>
+                                    <div className="mt-4 text-sm text-teal-100/80 opacity-90">
+                                        <span>Reliable assistance across the region 24/7</span>
+                                    </div>
+                                    <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-white/80">
+                                        <span className="h-2 w-2 rounded-full bg-cyan-400 group-hover:bg-white transition" />
+                                        <span className="tracking-wide">Always on call</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
 
