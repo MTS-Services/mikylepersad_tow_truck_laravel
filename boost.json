@@ -1,18 +1,23 @@
 {
     "agents": [
-        "claude_code",
         "cursor",
-        "gemini",
-        "windsurf"
-    ],
-    "editors": [
         "claude_code",
-        "cursor",
+        "opencode",
         "gemini",
-        "vscode",
-        "windsurf"
+        "codex"
     ],
-    "guidelines": [
+    "guidelines": true,
+    "herd_mcp": false,
+    "mcp": true,
+    "packages": [
         "laravel/fortify"
+    ],
+    "sail": false,
+    "skills": [
+        "wayfinder-development",
+        "pest-testing",
+        "inertia-react-development",
+        "tailwindcss-development",
+        "developing-with-fortify"
     ]
 }
