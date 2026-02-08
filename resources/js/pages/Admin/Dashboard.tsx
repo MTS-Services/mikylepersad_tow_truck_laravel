@@ -1,5 +1,6 @@
 import { Head, Link, router } from '@inertiajs/react';
 import { Users, CheckCircle, Clock, Wifi, LogOut, UserCog, Mail, Phone, Map } from 'lucide-react';
+import PasswordChangeModal from '@/components/PasswordChangeModal';
 
 interface Stats {
     total_drivers: number;
@@ -47,13 +48,16 @@ export default function AdminDashboard({ stats, recentDrivers }: Props) {
                                     <p className="text-sm text-slate-600">Tow Truck Directory</p>
                                 </div>
                             </div>
-                            <button
-                                onClick={handleLogout}
-                                className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
-                            >
-                                <LogOut className="w-4 h-4" />
-                                <span className="font-medium">Logout</span>
-                            </button>
+                            <div className='flex items-center gap-2'>
+                                <PasswordChangeModal auth_type={'admin'} />
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
+                                >
+                                    <LogOut className="w-4 h-4" />
+                                    <span className="font-medium">Logout</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </nav>

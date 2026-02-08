@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DriverManagementController;
 use App\Http\Controllers\Admin\ServiceAreaController;
 use App\Http\Controllers\Driver\DriverAuthController;
 use App\Http\Controllers\Driver\DriverDashboardController;
+use App\Http\Controllers\Admin\PasswordController as AdminPasswordController;
+use App\Http\Controllers\Driver\PasswordController as DriverPasswordController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::middleware('admin')->group(function () {
+        Route::post('/password/change', [AdminPasswordController::class, 'changePassword'])->name('password.change');
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::get('/drivers', [DriverManagementController::class, 'index'])->name('drivers.index');
         Route::post('/drivers', [DriverManagementController::class, 'store'])->name('drivers.store');
@@ -41,6 +44,7 @@ Route::prefix('driver')->name('driver.')->group(function () {
     });
 
     Route::middleware('driver')->group(function () {
+        Route::post('/password/change', [DriverPasswordController::class, 'changePassword'])->name('password.change');
         Route::get('/dashboard', [DriverDashboardController::class, 'index'])->name('dashboard');
         Route::post('/toggle-online', [DriverDashboardController::class, 'toggleOnline'])->name('toggle-online');
         Route::patch('/update-profile', [DriverDashboardController::class, 'updateProfile'])->name('update-profile');
@@ -48,5 +52,4 @@ Route::prefix('driver')->name('driver.')->group(function () {
     });
 });
 
-
-include __DIR__.'/settings.php';
+include __DIR__ . '/settings.php';
