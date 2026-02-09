@@ -415,9 +415,12 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                         href={`https://wa.me/${formatPhoneForWhatsApp(driver.phone_number)}?text=Hi, I need towing assistance. Are you available?`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#1ac6b7] to-[#0b5d8d] hover:from-[#13a29c] hover:to-[#0c4b73] text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 group/btn"
+                                                        className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#1ac6b7] to-[#0b5d8d] hover:from-[#13a29c] hover:to-[#0c4b73] text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 group/btn"
                                                     >
-                                                        <MessageCircle className="w-5 h-5 group-hover/btn:animate-bounce" />
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#25D366" d="M12.03 2c-5.52 0-10 4.48-10 10 0 1.77.47 3.43 1.29 4.87L2 22l5.31-1.39c1.4.77 3 1.2 4.72 1.2 5.52 0 10-4.48 10-10S17.55 2 12.03 2z"/>
+                                        <path fill="#FFF" d="M16.83 14.7c-.26-.13-1.53-.76-1.77-.85-.23-.09-.4-.13-.57.13-.17.26-.65.82-.8 1-.15.17-.29.19-.55.06-.26-.13-1.1-.41-2.1-1.3-.77-.69-1.3-1.55-1.45-1.81-.15-.26-.02-.4.11-.53.12-.12.26-.3.4-.44.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.42-.43-.57-.44h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.02 2.6c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.53-.62 1.74-1.23.22-.6.22-1.12.16-1.23-.07-.11-.26-.17-.52-.3z"/>
+                                        </svg>
                                                         <span>WhatsApp Now</span>
                                                     </a>
 
@@ -649,17 +652,12 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             <div>
                                 <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
                                 <ul className="space-y-3">
-                                    <li className="flex items-center gap-3 text-slate-400 text-sm">
-                                        <Mail className="w-5 h-5 text-orange-400" />
-                                        <a href="mailto:info@towtruck.com" className="hover:text-orange-400 transition-colors">info@towtruck.com</a>
-                                    </li>
-                                    <li className="flex items-center gap-3 text-slate-400 text-sm">
-                                        <Mail className="w-5 h-5 text-orange-400" />
-                                        <a href="mailto:admin@towtruck.com" className="hover:text-orange-400 transition-colors">admin@towtruck.com</a>
-                                    </li>
-                                    <li className="flex items-center gap-3 text-slate-400 text-sm">
-                                        <PhoneCall className="w-5 h-5 text-orange-400" />
-                                        <a href="tel:+18686847823" className="hover:text-orange-400 transition-colors">1(868)684-7823</a>
+                                    <li className="flex items-center gap-2 text-slate-400 text-sm">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#25D366" d="M12.03 2c-5.52 0-10 4.48-10 10 0 1.77.47 3.43 1.29 4.87L2 22l5.31-1.39c1.4.77 3 1.2 4.72 1.2 5.52 0 10-4.48 10-10S17.55 2 12.03 2z"/>
+                                        <path fill="#FFF" d="M16.83 14.7c-.26-.13-1.53-.76-1.77-.85-.23-.09-.4-.13-.57.13-.17.26-.65.82-.8 1-.15.17-.29.19-.55.06-.26-.13-1.1-.41-2.1-1.3-.77-.69-1.3-1.55-1.45-1.81-.15-.26-.02-.4.11-.53.12-.12.26-.3.4-.44.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.42-.43-.57-.44h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.02 2.6c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.53-.62 1.74-1.23.22-.6.22-1.12.16-1.23-.07-.11-.26-.17-.52-.3z"/>
+                                        </svg>
+                                        <a href="https://wa.me/+18686847823" className="hover:text-orange-400 transition-colors">1(868)684-7823</a>
                                     </li>
                                 </ul>
 
