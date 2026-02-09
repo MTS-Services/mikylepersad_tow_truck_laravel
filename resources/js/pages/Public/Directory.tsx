@@ -411,7 +411,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                 </div>
 
                                                 <div className="space-y-3">
-                                                    <Link
+                                                    <a
                                                         href={`https://wa.me/${formatPhoneForWhatsApp(driver.phone_number)}?text=Hi, I need towing assistance. Are you available?`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
@@ -419,15 +419,15 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                     >
                                                         <MessageCircle className="w-5 h-5 group-hover/btn:animate-bounce" />
                                                         <span>WhatsApp Now</span>
-                                                    </Link>
+                                                    </a>
 
-                                                    <Link
+                                                    <a
                                                         href={`tel:${driver.phone_number}`}
                                                         className="flex items-center justify-center gap-3 w-full bg-white/70 hover:bg-white/90 text-slate-900 font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-inner"
                                                     >
                                                         <Phone className="w-5 h-5" />
                                                         <span>{driver.phone_number}</span>
-                                                    </Link>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
