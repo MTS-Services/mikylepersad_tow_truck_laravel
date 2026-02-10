@@ -412,7 +412,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
 
                                                 <div className="space-y-3">
                                                     <a
-                                                        href={`https://wa.me/${formatPhoneForWhatsApp(driver.phone_number)}?text=Hi, I need towing assistance. Are you available?`}
+                                                        href={`https://wa.me/${formatPhoneForWhatsApp(driver.phone_number)}?text=Hi, found you on towtrucktt.com I need tow assistance are you available?`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#1ac6b7] to-[#0b5d8d] hover:from-[#13a29c] hover:to-[#0c4b73] text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 group/btn"
