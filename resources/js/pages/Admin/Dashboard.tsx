@@ -1,5 +1,5 @@
 import { Head, Link, router } from '@inertiajs/react';
-import { Users, CheckCircle, Clock, Wifi, LogOut, UserCog, Mail, Phone, Map } from 'lucide-react';
+import { Users, CheckCircle, Clock, Wifi, LogOut, UserCog, Mail, Phone, Map, User } from 'lucide-react';
 import PasswordChangeModal from '@/components/PasswordChangeModal';
 
 interface Stats {
@@ -50,6 +50,13 @@ export default function AdminDashboard({ stats, recentDrivers }: Props) {
                             </div>
                             <div className='flex items-center gap-2'>
                                 <PasswordChangeModal auth_type={'admin'} />
+                                <Link
+                                    href={route('admin.profile.edit')}
+                                    className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
+                                >
+                                    <User className="w-4 h-4" />
+                                    <span className="font-medium">Profile</span>
+                                </Link>
                                 <button
                                     onClick={handleLogout}
                                     className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"

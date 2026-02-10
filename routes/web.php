@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\DriverManagementController;
 use App\Http\Controllers\Admin\ServiceAreaController;
 use App\Http\Controllers\Driver\DriverAuthController;
@@ -32,6 +33,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/service-areas/{serviceArea}', [ServiceAreaController::class, 'update'])->name('service-areas.update');
         Route::delete('/service-areas/{serviceArea}', [ServiceAreaController::class, 'destroy'])->name('service-areas.destroy');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+        Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
     });
 });
 
