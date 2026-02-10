@@ -33,6 +33,6 @@ class AdminProfileController extends Controller
 
         $admin->update($request->validated());
 
-        return back()->with('success', 'Profile updated successfully.');
+        return to_route('admin.profile.edit')->with('success', 'Profile updated successfully.');
     }
 }
