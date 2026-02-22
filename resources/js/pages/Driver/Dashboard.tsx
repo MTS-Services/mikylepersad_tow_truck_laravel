@@ -35,6 +35,7 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
     const [isOnline, setIsOnline] = useState(driver.is_online);
 
     const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
         phone_number: '',
         service_area_id: '',
         avatar: null as File | null,
@@ -44,6 +45,7 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
       useEffect(() => {
         if (driver) {
             setData({
+                name: driver.name || '',
                 phone_number: driver.phone_number || '',
                 service_area_id: driver.service_area_id || '',
                 avatar: null,
@@ -193,33 +195,55 @@ export default function DriverDashboard({ driver, serviceAreas }: Props) {
                         </div>
 
 
-                        <div className="mb-8 p-6 bg-slate-50 rounded-xl border border-slate-200">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                                    <Mail className="w-6 h-6 text-blue-600" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-slate-600 font-medium">Email Address</p>
-                                    <p className="text-lg font-semibold text-slate-900">{driver.email}</p>
-                                </div>
-                            </div>
-                            <p className="text-sm text-slate-500">Email cannot be changed. Contact admin if you need to update it.</p>
-                        </div>
-
-
-
-
                         <form onSubmit={submit} className="space-y-6">
+                            <div>
+                                <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
+                                    Full Name
+                                </label>
+                                <div className="relative">
+                                    <Truck className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        value={data.name}
+                                        onChange={(e) => setData('name', e.target.value)}
+                                        className="w-full pl-12 pr-4 py-3.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900"
+                                        placeholder="Your display name"
+                                        required
+                                    />
+                                </div>
+                                {errors.name && (
+                                    <p className="mt-2 text-sm text-red-600 animate-in fade-in slide-in-from-top duration-300">
+                                        {errors.name}
+                                    </p>
+                                )}
+                                <p className="mt-2 text-sm text-slate-500">You can update your name anytime. This name is shown to customers in the directory.</p>
+                            </div>
+
+                            <div className="mb-8 p-6 bg-slate-50 rounded-xl border border-slate-200">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                        <Mail className="w-6 h-6 text-blue-600" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-slate-600 font-medium">Email Address</p>
+                                        <p className="text-lg font-semibold text-slate-900">{driver.email}</p>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-slate-500">Email cannot be changed. Contact admin if you need to update it.</p>
+                            </div>
+
                             <div className='w-1/2 mx-auto'>
                                 <FileUpload
                                     value={data.avatar}
                                     onChange={(file) => setData('avatar', file as File | null)}
                                     existingFiles={existingFiles}
                                     onRemoveExisting={handleRemoveExisting}
-                                    accept="video/*,image/*"
-                                    maxSize={500}
+                                    accept="image/jpeg,image/png,image/gif,image/webp"
+                                    maxSize={2}
                                 />
                                 <InputError message={errors.avatar} />
+                                <p className="mt-2 text-sm text-slate-500">Use a clear photo of your truck or logo (max 2MB). Avoid screenshots.</p>
                             </div>
                             <div>
                                 <label htmlFor="phone_number" className="block text-sm font-semibold text-slate-700 mb-2">
