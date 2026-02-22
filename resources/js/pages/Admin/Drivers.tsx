@@ -1,6 +1,8 @@
 import { Head, Link, router, useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import { UserCog, LogOut, CheckCircle, Trash2, Clock, Circle, ArrowLeft, Search, ChevronLeft, ChevronRight, Filter, Plus, X, Edit2, Mail, Phone } from 'lucide-react';
+import FileUpload from '@/components/file-upload';
+import InputError from '@/components/input-error';
 
 interface Driver {
     id: number;
@@ -49,6 +51,7 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editingDriver, setEditingDriver] = useState<Driver | null>(null);
+    const [editAvatarRemoved, setEditAvatarRemoved] = useState(false);
 
     const addForm = useForm({
         name: '',
@@ -66,6 +69,8 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
         service_area_id: '',
         password: '',
         is_approved: false,
+        avatar: null as File | null,
+        _method: 'PUT' as string,
     });
 
     const handleLogout = () => {
@@ -136,6 +141,7 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
 
     const openEditModal = (driver: Driver) => {
         setEditingDriver(driver);
+        setEditAvatarRemoved(false);
         editForm.setData({
             name: driver.name,
             email: driver.email,
@@ -143,6 +149,8 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
             service_area_id: driver.service_area_id?.toString() || '',
             password: '',
             is_approved: driver.is_approved,
+            avatar: null,
+            _method: 'PUT',
         });
         setShowEditModal(true);
     };
@@ -150,13 +158,19 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
     const closeEditModal = () => {
         setShowEditModal(false);
         setEditingDriver(null);
+        setEditAvatarRemoved(false);
         editForm.reset();
+    };
+
+    const handleEditRemoveAvatar = () => {
+        setEditAvatarRemoved(true);
     };
 
     const handleEditDriver = (e: React.FormEvent) => {
         e.preventDefault();
         if (!editingDriver) return;
-        editForm.put(route('admin.drivers.update', editingDriver.id), {
+        editForm.post(route('admin.drivers.update', editingDriver.id), {
+            forceFormData: true,
             onSuccess: () => closeEditModal(),
         });
     };
@@ -625,6 +639,25 @@ export default function Drivers({ drivers, serviceAreas, filters }: Props) {
                                 </button>
                             </div>
                             <form onSubmit={handleEditDriver} className="p-6 space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 mb-1">Profile Picture</label>
+                                    <p className="text-xs text-slate-500 mb-2">You can update the driver&apos;s profile picture. Upload a clear photo (e.g. truck or logo). Max 2MB.</p>
+                                    <FileUpload
+                                        value={editForm.data.avatar}
+                                        onChange={(file) => editForm.setData('avatar', file as File | null)}
+                                        existingFiles={!editAvatarRemoved && editingDriver?.avatar_url ? [{
+                                            id: editingDriver.id,
+                                            url: editingDriver.avatar_url,
+                                            name: 'Current photo',
+                                            mime_type: 'image/*',
+                                            path: '',
+                                        }] : []}
+                                        onRemoveExisting={handleEditRemoveAvatar}
+                                        accept="image/jpeg,image/png,image/gif,image/webp"
+                                        maxSize={2}
+                                    />
+                                    <InputError message={editForm.errors.avatar} />
+                                </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
                                     <input

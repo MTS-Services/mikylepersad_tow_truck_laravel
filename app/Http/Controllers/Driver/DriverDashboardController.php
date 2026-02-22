@@ -53,9 +53,10 @@ class DriverDashboardController extends Controller
         $driver = Auth::guard('driver')->user();
 
         $validated = $request->validate([
+            'name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
             'service_area_id' => 'required|exists:service_areas,id',
-            'avatar' => 'nullable|image',
+            'avatar' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
         ]);
 
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
