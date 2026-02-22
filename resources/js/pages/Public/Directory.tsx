@@ -380,7 +380,7 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                                                             ? 'bg-gradient-to-br from-teal-500 to-cyan-500'
                                                             : 'bg-gradient-to-br from-slate-500 to-slate-600'
                                                             }`}>
-                                                            <img className="rounded-xl" src={driver.avatar_url} alt={driver.name} />
+                                                            <img className="w-full h-full object-cover rounded-xl" src={driver.avatar_url} alt={driver.name} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -652,6 +652,11 @@ export default function Directory({ drivers, serviceAreas, stats, filters }: Pro
                             <div>
                                 <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
                                 <ul className="space-y-3">
+                                    <li className="flex items-center gap-2 text-slate-400 text-sm">
+                                        <Mail className="w-5 h-5 text-slate-500 shrink-0" />
+                                        <span>Email: </span>
+                                        <a href="mailto:towtrucktt@outlook.com" className="hover:text-orange-400 transition-colors">towtrucktt@outlook.com</a>
+                                    </li>
                                     <li className="flex items-center gap-2 text-slate-400 text-sm">
                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="#25D366" d="M12.03 2c-5.52 0-10 4.48-10 10 0 1.77.47 3.43 1.29 4.87L2 22l5.31-1.39c1.4.77 3 1.2 4.72 1.2 5.52 0 10-4.48 10-10S17.55 2 12.03 2z"/>

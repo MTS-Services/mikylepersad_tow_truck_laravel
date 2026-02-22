@@ -76,7 +76,7 @@ class DriverManagementController extends Controller
             'service_area_id' => ['required', 'exists:service_areas,id'],
             'password' => ['required', 'string', 'min:8'],
             'is_approved' => ['boolean'],
-            'avatar' => ['nullable', 'image'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,webp', 'max:2048'],
         ]);
 
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
@@ -107,7 +107,7 @@ class DriverManagementController extends Controller
             'service_area_id' => ['required', 'exists:service_areas,id'],
             'password' => ['nullable', 'string', 'min:8'],
             'is_approved' => ['boolean'],
-            'avatar' => ['nullable', 'image'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,webp', 'max:2048'],
         ]);
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             if ($driver->avatar) {
@@ -121,8 +121,10 @@ class DriverManagementController extends Controller
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
             'service_area_id' => $validated['service_area_id'],
-            'avatar' => $validated['avatar'] ?? null,
         ];
+        if (array_key_exists('avatar', $validated)) {
+            $updateData['avatar'] = $validated['avatar'];
+        }
 
         if (!empty($validated['password'])) {
             $updateData['password'] = Hash::make($validated['password']);
